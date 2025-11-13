@@ -25,7 +25,6 @@ function ThemeOptions({ themeOption }: ThemeOptionProps) {
       <Button
         icon={themeIcon[themeOption as keyof typeof themeIcon]}
         isActive={themeOption === theme}
-        isRounded={true}
         isTransparent={true}
         onClick={() => setTheme(themeOption)}
       />

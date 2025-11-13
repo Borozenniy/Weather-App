@@ -17,7 +17,7 @@ function Button({
         'cursor-pointer p-1 hover:bg-gray-400',
         'button',
         `${isActive ? 'bg-indigo-500' : ''}`,
-        `${isRounded ? 'rounded-full' : ''}`,
+        `${isRounded ? 'rounded-md' : ''}`,
         `${isTransparent ? '' : 'bg-green-600/60 hover:bg-green-600/80'}`,
         `${mode === 'danger' ? 'hover:bg-red-400' : ''}`,
       ].join(' ')}

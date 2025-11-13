@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLazyGetCoordsByCityNameQuery } from '@/lib/api';
 import { useModal } from '@/hooks/use-modal';
+import { useTheme } from '@/hooks/use-theme';
 import { addCity } from '@/slices/citiesSlice';
 import { AddCityModal } from '@/components/modal/add-city-modal';
 import { Button } from '@/components/button/button';
@@ -10,15 +11,16 @@ import type { AppDispatch } from '@/store/store';
 import type { CityProps } from '@/shared/types/city';
 
 import SearchIcon from '../../../public/icons/search.svg';
+import SearchIconWhite from '../../../public/icons/search-white.svg';
 
 const searchIcon = {
-  src: SearchIcon,
-  alt: 'Search Icon',
+  light: { src: SearchIcon, alt: 'Search Icon' },
+  dark: { src: SearchIconWhite, alt: 'Search Icon' },
 };
 
 function SearchBar() {
   const [cityName, setCityName] = useState('');
-
+  const { theme } = useTheme();
   const [triggerGetCoords] = useLazyGetCoordsByCityNameQuery();
   const dispatch = useDispatch<AppDispatch>();
   const handleAddCity = (city: CityProps) => {
@@ -52,7 +54,11 @@ function SearchBar() {
         value={cityName}
         onChange={(e) => setCityName(e.target.value)}
       />
-      <Button icon={searchIcon} onClick={handleSearch} disabled={!cityName} />
+      <Button
+        icon={searchIcon[theme]}
+        onClick={handleSearch}
+        disabled={!cityName}
+      />
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { themeOptions } from '@/constants/theme-options';
 
 function ThemeSwitcher() {
   return (
-    <div className='flex gap-1 border-2 border-gray-400 rounded-full'>
+    <div className='flex border-2 border-gray-400 rounded-full overflow-hidden'>
       {themeOptions.map((theme) => (
         <ThemeOptions key={theme} themeOption={theme as 'light' | 'dark'} />
       ))}

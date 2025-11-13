@@ -20,6 +20,8 @@ describe('ThemeSwitcher component', () => {
   it('ThemeSwitcher has correct class names', () => {
     const { container } = render(<ThemeSwitcher />);
     const div = container.querySelector('div');
-    expect(div).toHaveClass('flex gap-1 border-2 border-gray-400 rounded-full');
+    expect(div).toHaveClass(
+      'flex border-2 border-gray-400 rounded-full overflow-hidden'
+    );
   });
 });

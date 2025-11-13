@@ -51,7 +51,7 @@ describe('Button component', () => {
     );
     const button = container.querySelector('button');
     expect(button).toHaveClass('bg-indigo-500');
-    expect(button).toHaveClass('rounded-full');
+    expect(button).toHaveClass('rounded-md');
     expect(button).toHaveClass('bg-green-600/60');
     expect(button).toHaveClass('hover:bg-red-400');
   });

@@ -5,14 +5,20 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLazyGetWeatherByCoordsQuery } from '@/lib/api';
 import { updateCityWeather, removeCity } from '@/slices/citiesSlice';
+import { useTheme } from '@/hooks/use-theme';
 import { Button } from '@/components/button/button';
 import type { CityProps, CityWeatherProps } from '@/shared/types/city';
 import type { AppDispatch } from '@/store/store';
-import DeleteIcon from '../../../../public/delete.svg';
+import DeleteIcon from '../../../../public/icons/trash-bin.svg';
+import DeleteIconWhite from '../../../../public/icons/trash-bin-white.svg';
 
-const deleteIcon = { src: DeleteIcon, alt: 'Delete Icon' };
+const deleteIcons = {
+  light: { src: DeleteIcon, alt: 'Delete Icon' },
+  dark: { src: DeleteIconWhite, alt: 'Delete Icon' },
+};
 
 function CityCard({ city }: { city: CityProps }) {
+  const { theme } = useTheme();
   const dispatch = useDispatch<AppDispatch>();
   const [fetchWeather, { data, isFetching }] = useLazyGetWeatherByCoordsQuery();
 
@@ -47,7 +53,7 @@ function CityCard({ city }: { city: CityProps }) {
       <div className='flex justify-between items-center'>
         <Link
           href={`/city/${city.name}`}
-          className='p-1 rounded-full bg-blue-400/80 hover:bg-blue-500/80 dark:bg-blue-600/80 dark:hover:bg-blue-500/80'
+          className='p-1 rounded-md bg-blue-400/80 hover:bg-blue-500/80 dark:bg-blue-600/80 dark:hover:bg-blue-500/80'
         >
           Show details
         </Link>
@@ -62,10 +68,10 @@ function CityCard({ city }: { city: CityProps }) {
           disabled={isFetching || !city.lat || !city.lon}
         />
       </div>
-      <div className='absolute top-3 right-1'>
+      <div className='absolute top-3 right-2'>
         <Button
           mode='danger'
-          icon={deleteIcon}
+          icon={deleteIcons[theme]}
           isRounded
           isTransparent
           onClick={handleDeleteCity}

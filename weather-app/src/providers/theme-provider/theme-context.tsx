@@ -1,7 +1,6 @@
 'use client';
 
 import { createContext, useEffect, useState, type ReactNode } from 'react';
-import type { ThemeOptionProps } from '@/shared/types/theme-options';
 
 interface ThemeContextProps {
   theme: 'light' | 'dark';
