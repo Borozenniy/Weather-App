@@ -4,10 +4,13 @@ import { useParams } from 'next/navigation';
 import { useSelector } from 'react-redux';
 import { selectCityByName } from '@/slices/citiesSlice';
 import { CityDetailsPage } from '@/components/city/city-detail-page/city-details-page';
+import { CitiesProps } from '@/shared/types/city';
 
 function CityPage() {
   const params = useParams<{ cityname: string }>();
-  const city = useSelector((state) => selectCityByName(state, params.cityname));
+  const city = useSelector((state: { cities: CitiesProps }) =>
+    selectCityByName(state, params.cityname)
+  );
 
   if (!city) {
     return (
