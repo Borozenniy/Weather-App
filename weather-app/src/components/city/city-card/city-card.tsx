@@ -5,8 +5,10 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLazyGetWeatherByCoordsQuery } from '@/lib/api';
 import { updateCityWeather, removeCity } from '@/slices/citiesSlice';
+import { useModal } from '@/hooks/use-modal';
 import { useTheme } from '@/hooks/use-theme';
 import { Button } from '@/components/button/button';
+import { DeleteCityModal } from '@/components/modal/delete-city-modal';
 import type { CityProps, CityWeatherProps } from '@/shared/types/city';
 import type { AppDispatch } from '@/store/store';
 import DeleteIcon from '../../../../public/icons/trash-bin.svg';
@@ -18,6 +20,7 @@ const deleteIcons = {
 };
 
 function CityCard({ city }: { city: CityProps }) {
+  const { openModal, closeModal } = useModal();
   const { theme } = useTheme();
   const dispatch = useDispatch<AppDispatch>();
   const [fetchWeather, { data, isFetching }] = useLazyGetWeatherByCoordsQuery();
@@ -36,7 +39,20 @@ function CityCard({ city }: { city: CityProps }) {
     }
   }, [data]);
 
-  const handleDeleteCity = () => dispatch(removeCity(city.name));
+  const handleConfirmDeleteCity = () => {
+    dispatch(removeCity(city.name));
+    closeModal();
+  };
+
+  const handleDeleteCity = () => {
+    openModal(
+      <DeleteCityModal
+        city={city.name}
+        onConfirm={handleConfirmDeleteCity}
+        onCancel={closeModal}
+      />
+    );
+  };
 
   return (
     <div className='w-64 h-40 relative flex flex-col justify-between border rounded-lg p-3 bg-white dark:bg-zinc-900 dark:text-zinc-50 cursor-pointer duration-250 ease-in-out hover:scale-101'>

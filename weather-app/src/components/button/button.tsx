@@ -20,6 +20,11 @@ function Button({
         `${isRounded ? 'rounded-md' : ''}`,
         `${isTransparent ? '' : 'bg-green-600/60 hover:bg-green-600/80'}`,
         `${mode === 'danger' ? 'hover:bg-red-400' : ''}`,
+        `${
+          mode === 'danger' && isActive
+            ? 'bg-red-400 hover:bg-red-500/90 dark:bg-red-500/90 dark:hover:bg-red-400'
+            : ''
+        }`,
       ].join(' ')}
       disabled={disabled}
       onClick={onClick}

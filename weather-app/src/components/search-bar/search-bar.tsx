@@ -19,6 +19,7 @@ const searchIcon = {
 };
 
 function SearchBar() {
+  const { openModal } = useModal();
   const [cityName, setCityName] = useState('');
   const { theme } = useTheme();
   const [triggerGetCoords] = useLazyGetCoordsByCityNameQuery();
@@ -26,8 +27,6 @@ function SearchBar() {
   const handleAddCity = (city: CityProps) => {
     dispatch(addCity(city));
   };
-
-  const { openModal } = useModal();
 
   const cleanUp = () => {
     setCityName('');

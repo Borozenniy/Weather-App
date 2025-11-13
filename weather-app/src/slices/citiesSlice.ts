@@ -1,15 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { CitiesProps, CityProps } from '@/shared/types/city';
 
-export const defaultCities: CityProps[] = [
-  {
-    name: 'Kyiv',
-    lat: 50.4500336,
-    lon: 30.5241361,
-    country: 'UA',
-  },
-];
-
 //const initialState: CitiesProps = {
 //  cities: JSON.parse(
 //    localStorage.getItem('cities') || JSON.stringify(defaultCities)
@@ -17,7 +8,7 @@ export const defaultCities: CityProps[] = [
 //};
 
 const initialState: CitiesProps = {
-  cities: defaultCities,
+  cities: [],
 };
 const citiesSlice = createSlice({
   name: 'cities',
