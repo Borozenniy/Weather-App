@@ -3,7 +3,7 @@ import type { PropsWithChildren } from 'react';
 
 function Layout({ children }: PropsWithChildren) {
   return (
-    <div className='flex min-h-screen w-full flex-col items-start justify-center pt-28 bg-gray-50 dark:bg-gray-900 dark:text-zinc-50 sm:items-start'>
+    <div className='w-full min-h-screen flex items-center justify-start pt-28 bg-gray-50 dark:bg-gray-900 dark:text-zinc-50 '>
       {children}
     </div>
   );

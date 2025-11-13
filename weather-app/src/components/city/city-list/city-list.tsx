@@ -27,7 +27,7 @@ function CityList() {
   }, [dispatch]);
 
   return (
-    <div className='w-full flex gap-4 flex-wrap'>
+    <div className='w-full flex flex-row flex-wrap gap-4 max-sm:justify-center'>
       {cities.map((city) => (
         <CityCard key={city.name} city={city} />
       ))}

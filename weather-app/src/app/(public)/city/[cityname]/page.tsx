@@ -25,9 +25,9 @@ function CityPage() {
   }
 
   return (
-    <div className='w-full flex flex-col min-h-screen'>
-      <div className='pl-10'>
-        <h2 className='font-bold text-2xl pb-2'>
+    <div className='w-6xl flex flex-col items-center justify-start min-h-screen'>
+      <div className='pb-4'>
+        <h2 className='font-bold text-2xl pb-3'>
           {params.cityname} {city?.state && `(${city.state})`}
         </h2>
         <div>

@@ -55,7 +55,7 @@ function CityCard({ city }: { city: CityProps }) {
   };
 
   return (
-    <div className='w-64 h-40 relative flex flex-col justify-between border rounded-lg p-3 bg-white dark:bg-zinc-900 dark:text-zinc-50 cursor-pointer duration-250 ease-in-out hover:scale-101'>
+    <div className='w-64 h-40 relative flex flex-col justify-between border-1 rounded-lg p-3 bg-white hover:bg-gray-200 dark:hover:bg-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 cursor-pointer duration-250 ease-in-out hover:scale-101'>
       <div>
         <h2 className='text-lg font-semibold'>{city.name}</h2>
         <p>
