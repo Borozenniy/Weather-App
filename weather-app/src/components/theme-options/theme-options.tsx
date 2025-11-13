@@ -27,7 +27,7 @@ function ThemeOptions({ themeOption }: ThemeOptionProps) {
         isActive={themeOption === theme}
         isRounded={true}
         isTransparent={true}
-        onClick={() => setTheme(themeOption as unknown as ThemeOptionProps)}
+        onClick={() => setTheme(themeOption)}
       />
     </div>
   );

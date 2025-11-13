@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { ThemeOptions } from './theme-options';
 
 describe('ThemeOptions component', () => {
