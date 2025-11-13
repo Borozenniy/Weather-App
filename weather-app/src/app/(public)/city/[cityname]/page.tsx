@@ -26,9 +26,23 @@ function CityPage() {
 
   return (
     <div className='w-full flex flex-col min-h-screen'>
-      <h2 className='font-bold text-2xl pl-10'>
-        {params.cityname} {city?.state && `(${city.state})`}
-      </h2>
+      <div className='pl-10'>
+        <h2 className='font-bold text-2xl pb-2'>
+          {params.cityname} {city?.state && `(${city.state})`}
+        </h2>
+        <div>
+          <p>
+            Temp:{' '}
+            {`${
+              city?.weather?.current?.temp
+                ? city.weather.current.temp.toFixed(1)
+                : 'N/A'
+            }°C`}{' '}
+            {city?.weather?.current?.feels_like &&
+              `( feels like ${city.weather.current.feels_like.toFixed(1)}°C )`}
+          </p>
+        </div>
+      </div>
       <CityDetailsPage city={city} />
     </div>
   );
