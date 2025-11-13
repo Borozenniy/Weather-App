@@ -24,7 +24,7 @@ describe('Home page', () => {
     const { container } = render(<Home />);
     const main = container.querySelector('main');
     expect(main).toHaveClass(
-      'flex items-start max-sm:items-center min-h-screen w-full flex-col py-32 px-16 bg-gray-50 dark:bg-gray-900 dark:text-zinc-50'
+      'flex items-start max-sm:items-center min-h-screen w-6xl flex-col py-32 px-8'
     );
   });
 
@@ -32,7 +32,7 @@ describe('Home page', () => {
     const { container } = render(<Home />);
     const outerDiv = container.querySelector('div');
     expect(outerDiv).toHaveClass(
-      'flex min-h-screen items-center justify-center'
+      'flex min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-900 dark:text-zinc-50'
     );
   });
 });

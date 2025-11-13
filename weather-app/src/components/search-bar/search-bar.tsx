@@ -43,7 +43,7 @@ function SearchBar() {
   };
 
   return (
-    <div className='w-56 md:w-72 rounded-xl flex overflow-hidden mb-8 border border-black dark:border-gray-300'>
+    <div className='w-56 md:w-72 rounded-xl flex overflow-hidden mb-8 border-2 border-black dark:border-gray-300 focus-within:border-blue-700 dark:focus-within:border-blue-500'>
       <input
         id='search-bar'
         className='flex-1 px-2 py-1 outline-none border-none focus:ring-0 '
