@@ -19,8 +19,9 @@ function AddCityModal({
     <div>
       {cities.map((city) => (
         <div
-          className='min-h-18 flex flex-row justify-between m-5 border-1 rounded-xl cursor-pointer overflow-hidden hover:transition duration-250 ease-in-out hover:scale-101 dark:hover:bg-green-400/40  bg-white dark:bg-zinc-900 dark:text-zinc-50'
+          className='min-h-18 flex flex-row justify-between m-5 border-1 rounded-xl cursor-pointer overflow-hidden hover:transition duration-250 ease-in-out hover:scale-101 dark:hover:bg-green-400/40 hover:bg-green-400/40 bg-white dark:bg-zinc-900 dark:text-zinc-50'
           key={city.name + city.lat + city.lon}
+          onClick={() => handleAddNewCity(city)}
         >
           <div className='flex flex-col p-2 '>
             <p className='pb-2'>

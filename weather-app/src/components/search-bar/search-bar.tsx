@@ -27,9 +27,14 @@ function SearchBar() {
 
   const { openModal } = useModal();
 
+  const cleanUp = () => {
+    setCityName('');
+  };
+
   const handleSearch = async () => {
     if (!cityName) return;
     const data = await triggerGetCoords(cityName).unwrap();
+    cleanUp();
 
     if (data) {
       openModal(<AddCityModal cities={data} addNewCity={handleAddCity} />);
@@ -37,11 +42,12 @@ function SearchBar() {
   };
 
   return (
-    <div className='w-64 border-1 rounded-xl flex overflow-hidden justify-between mb-8'>
+    <div className='w-56 md:w-72 rounded-xl flex overflow-hidden mb-8 border border-gray-300'>
       <input
         id='search-bar'
-        className='pl-2 outline-none focus:outline-none focus:ring-0 border-none'
+        className='flex-1 px-2 py-1 outline-none border-none focus:ring-0 '
         type='text'
+        size={2}
         placeholder='Type city name'
         value={cityName}
         onChange={(e) => setCityName(e.target.value)}

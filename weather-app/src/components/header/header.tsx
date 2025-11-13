@@ -4,8 +4,8 @@ import { ThemeSwitcher } from '../theme-switcher/theme-swither';
 
 function Header() {
   return (
-    <header className='fixed w-full border-b-2 border-b-gray-400 p-3 max-h-20 overflow-hidden bg-gray-50 dark:bg-gray-900 border-gray-900  text-white'>
-      <div className='flex flex-row items-center justify-between'>
+    <header className='fixed w-full border-b-2 border-b-gray-400 p-3 max-h-20 overflow-hidden bg-gray-50 dark:bg-gray-900 border-gray-900  text-white z-1'>
+      <div className='flex flex-row items-center justify-between pr-1 pl-1 sm:pr-4 sm:pl-4'>
         <Link href='/'>
           <Image
             src='/weather-icon.svg'
@@ -14,7 +14,7 @@ function Header() {
             height={60}
           />
         </Link>
-        <p className='max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50'>
+        <p className='max-w-xs text-2xl sm:text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50'>
           Weatherly
         </p>
         <ThemeSwitcher />

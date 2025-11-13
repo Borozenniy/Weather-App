@@ -1,20 +1,22 @@
 'use client';
 
 import { createContext, useEffect, useState, type ReactNode } from 'react';
+import type { ThemeOptionProps } from '@/shared/types/theme-options';
 
 interface ThemeContextProps {
   theme: 'light' | 'dark';
-  toggleTheme: () => void;
   setTheme: (theme: 'light' | 'dark') => void;
 }
 
 const ThemeContext = createContext<ThemeContextProps>({
   theme: 'light',
-  toggleTheme: () => {},
   setTheme: () => {},
 });
 
 const ThemeProvider = ({ children }: { children: ReactNode }) => {
+  //const currentTheme = localStorage
+  //  ? (localStorage.getItem('theme') as ThemeContextProps['theme'] | 'dark')
+  //  : 'light';
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
@@ -36,12 +38,8 @@ const ThemeProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
-  };
-
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
       {children}
     </ThemeContext.Provider>
   );
