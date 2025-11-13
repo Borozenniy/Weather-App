@@ -2,7 +2,8 @@ import { render, screen } from '@testing-library/react';
 import { CityList } from './city-list';
 import { CityCard } from '../city-card/city-card';
 import * as reactRedux from 'react-redux';
-import { setCities } from '@/slices/citiesSlice';
+import { addCity, setCities } from '@/slices/citiesSlice';
+import { defaultCity } from '@/constants/city';
 
 jest.mock('../city-card/city-card', () => ({
   CityCard: jest.fn(({ city }) => <div>{city.name}</div>),
@@ -15,6 +16,7 @@ jest.mock('react-redux', () => ({
 
 jest.mock('@/slices/citiesSlice', () => ({
   setCities: jest.fn(),
+  addCity: jest.fn(),
 }));
 
 describe('CityList component', () => {
@@ -68,7 +70,7 @@ describe('CityList component', () => {
     localStorage.setItem('cities', 'INVALID_JSON');
     useSelectorMock.mockReturnValue([]);
     render(<CityList />);
-    expect(dispatchMock).not.toHaveBeenCalled();
+    expect(dispatchMock).toHaveBeenCalledWith(addCity(defaultCity));
     consoleErrorMock.mockRestore();
   });
 
@@ -76,6 +78,6 @@ describe('CityList component', () => {
     localStorage.setItem('cities', JSON.stringify([]));
     useSelectorMock.mockReturnValue([]);
     render(<CityList />);
-    expect(dispatchMock).not.toHaveBeenCalled();
+    expect(dispatchMock).toHaveBeenCalledWith(addCity(defaultCity));
   });
 });
