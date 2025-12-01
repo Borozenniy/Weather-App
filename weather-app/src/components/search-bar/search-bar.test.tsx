@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { SearchBar } from './search-bar';
-import * as api from '@/lib/api';
+import * as api from '@/services/weather/api';
 import * as modalHook from '@/hooks/use-modal';
 import * as redux from 'react-redux';
 
@@ -21,7 +21,7 @@ describe('SearchBar component', () => {
       isFetching: false,
     });
 
-    (api.useLazyGetCoordsByCityNameQuery as jest.Mock).mockReturnValue([
+    (api.useLazyGetCoordsByCityInfoQuery as jest.Mock).mockReturnValue([
       lazyQueryMock().trigger,
       { data: null, isFetching: false },
     ]);

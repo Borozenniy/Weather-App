@@ -3,12 +3,13 @@
 import Link from 'next/link';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useLazyGetWeatherByCoordsQuery } from '@/lib/api';
+import { useLazyGetWeatherByCoordsQuery } from '@/services/weather/api';
 import { updateCityWeather, removeCity } from '@/slices/citiesSlice';
 import { useModal } from '@/hooks/use-modal';
 import { useTheme } from '@/hooks/use-theme';
 import { Button } from '@/components/button/button';
 import { DeleteCityModal } from '@/components/modal/delete-city-modal';
+import { getLastTimeUpdated } from '@/shared/utils/date';
 import type { CityProps, CityWeatherProps } from '@/shared/types/city';
 import type { AppDispatch } from '@/store/store';
 import DeleteIcon from '../../../../public/icons/trash-bin.svg';
@@ -55,7 +56,7 @@ function CityCard({ city }: { city: CityProps }) {
   };
 
   return (
-    <div className='w-64 h-40 relative flex flex-col justify-between border-1 rounded-lg p-3 bg-white hover:bg-gray-200 dark:hover:bg-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 cursor-pointer duration-250 ease-in-out hover:scale-101'>
+    <div className='w-64 h-40 relative flex flex-col justify-between border-1 border-gray-500 rounded-lg p-3 bg-white hover:bg-gray-50 dark:hover:bg-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 cursor-pointer duration-250 ease-in-out hover:scale-101'>
       <div>
         <h2 className='text-lg font-semibold'>{city.name}</h2>
         <p>
@@ -64,6 +65,12 @@ function CityCard({ city }: { city: CityProps }) {
             : isFetching
             ? 'Завантаження...'
             : 'Немає даних'}
+        </p>
+      </div>
+      <div className='text-gray-500 ml-1 dark:text-gray-300/80'>
+        <p className='text-xs italic'>
+          {city.weather?.current?.dt &&
+            `Last update: ${getLastTimeUpdated(city.weather.current.dt)}`}
         </p>
       </div>
       <div className='flex justify-between items-center'>

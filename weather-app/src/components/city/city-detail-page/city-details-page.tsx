@@ -32,7 +32,7 @@ const CityDetailsPage = ({ city }: { city: CityProps }) => {
     }));
 
   return (
-    <div className='w-full m-1'>
+    <div className='w-full m-1 bg-white hover:shadow-md dark:bg-gray-800 rounded-xl p-2'>
       <div style={{ width: '100%', height: 300 }}>
         <ResponsiveContainer>
           <LineChart
@@ -49,7 +49,7 @@ const CityDetailsPage = ({ city }: { city: CityProps }) => {
               label={{ position: 'insideBottom', offset: -5 }}
             />
             <YAxis
-              domain={[0, 40]}
+              domain={[0, 20]}
               unit='°C'
               label={{
                 angle: -90,

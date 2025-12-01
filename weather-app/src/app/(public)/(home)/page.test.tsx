@@ -32,7 +32,7 @@ describe('Home page', () => {
     const { container } = render(<Home />);
     const outerDiv = container.querySelector('div');
     expect(outerDiv).toHaveClass(
-      'flex min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-900 dark:text-zinc-50'
+      'flex min-h-screen items-center justify-center bg-gray-100 dark:bg-gray-900 dark:text-zinc-50'
     );
   });
 });

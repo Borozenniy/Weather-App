@@ -1,6 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { WEATHER_API_KEY } from '@/constants/weatherApi';
+import { WEATHER_API_KEY } from '@/constants/weather-api';
 import type { CityProps } from '@/shared/types/city';
+
+const fakelat = 52.4550144;
+const fakelon = 13.3005312;
 
 export const weatherApi = createApi({
   reducerPath: 'weatherApi',
@@ -8,9 +11,13 @@ export const weatherApi = createApi({
     baseUrl: 'https://api.openweathermap.org/',
   }),
   endpoints: (builder) => ({
-    getCoordsByCityName: builder.query({
+    getCityInfoByCityName: builder.query({
       query: (city: string) =>
         `geo/1.0/direct?q=${city}&limit=3&appid=${WEATHER_API_KEY}`,
+    }),
+    getCityInfoByCoords: builder.query({
+      query: ({ lat, lon }) =>
+        `geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=3&appid=${WEATHER_API_KEY}`,
     }),
     getWeatherByCoords: builder.query<CityProps, { lat: number; lon: number }>({
       query: ({ lat, lon }) =>
@@ -19,6 +26,12 @@ export const weatherApi = createApi({
   }),
 });
 export const {
-  useLazyGetCoordsByCityNameQuery,
+  useGetCityInfoByCityNameQuery,
+  useLazyGetCityInfoByCityNameQuery,
+
+  useGetWeatherByCoordsQuery,
   useLazyGetWeatherByCoordsQuery,
+
+  useGetCityInfoByCoordsQuery,
+  useLazyGetCityInfoByCoordsQuery,
 } = weatherApi;
