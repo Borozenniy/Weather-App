@@ -14,7 +14,7 @@ function Button({
   return (
     <button
       className={[
-        'cursor-pointer p-1 hover:bg-gray-400',
+        'font-noto cursor-pointer p-1 hover:bg-gray-400',
         'button',
         `${isActive ? 'bg-indigo-500' : ''}`,
         `${isRounded ? 'rounded-md' : ''}`,

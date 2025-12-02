@@ -38,49 +38,48 @@ function CityPage() {
 
   return (
     <div className='w-6xl flex flex-col items-center justify-start min-h-screen m-5 px-4 lg:px-10 gap-4'>
-      <div className='w-full pb-4 bg-white p-5 rounded-xl hover:shadow-md dark:bg-gray-800 dark:border-gray-700'>
-        <div>
-          <div className='flex items-center gap-5 mb-3 max-md:justify-between'>
-            <p className='text-xs font-bold'>
-              {city.weather?.current?.dt &&
-                dateOfLastUpdate(city.weather.current.dt)}
-            </p>
-            <p className='text-xs italic text-gray-500 dark:text-gray-300/80'>
-              {city.weather?.current?.dt &&
-                `Last update: ${getLastTimeUpdated(city.weather.current.dt)}`}
-            </p>
-          </div>
-          <h2 className='font-bold text-2xl pb-3'>
-            {params.cityname}{' '}
-            <span className='font-medium text-xl'>
-              {city?.state && `(${city.state})`}
-            </span>
-          </h2>
-          <div>
-            <p>
-              Temp:{' '}
-              {`${
-                city?.weather?.current?.temp
-                  ? city.weather.current.temp.toFixed(1)
-                  : 'N/A'
-              }°C`}{' '}
-              {city?.weather?.current?.feels_like &&
-                `( feels like ${city.weather.current.feels_like.toFixed(
-                  1
-                )}°C )`}
-            </p>
-          </div>
-          <div>
-            <div>
-              <p>Humidity: {city.weather?.current?.humidity}%</p>
-              <p className=''>
-                {city.weather?.current?.dt &&
-                  `Wind / Wind gust: ${city.weather.current.wind_speed} km/h / ${city.weather.current.wind_gust} km/h`}
+      <div className='w-full pb-4 text-black dark:text-zinc-50 bg-surface-light-3 dark:bg-gray-700 p-5 rounded-xl hover:shadow-md  '>
+        <div className='flex items-center gap-5 mb-3 max-md:justify-between'>
+          <p className='text-xs font-noto font-bold'>
+            {city.weather?.current?.dt &&
+              dateOfLastUpdate(city.weather.current.dt)}
+          </p>
+          <p className='text-xs font-sans italic text-gray-500 dark:text-gray-300/80'>
+            {city.weather?.current?.dt &&
+              `Last update: ${getLastTimeUpdated(city.weather.current.dt)}`}
+          </p>
+        </div>
+        <div className='flex flex-row items-center justify-between max-md:flex-col max-md:items-start'>
+          <div className='flex flex-col'>
+            <h2 className='font-mono font-bold text-4xl pb-3'>
+              {params.cityname}{' '}
+              <span className='font-medium text-xl'>
+                {city?.state && `(${city.state})`}
+              </span>
+            </h2>
+            <div className='font-mono flex flex-row gap-1 items-end'>
+              <p className='text-3xl font-bold'>
+                {`${
+                  city?.weather?.current?.temp
+                    ? city.weather.current.temp.toFixed(1)
+                    : 'N/A'
+                }°C`}{' '}
               </p>
-              <p>Pressure: {city.weather?.current?.pressure} mb</p>
+              <span>
+                {city?.weather?.current?.feels_like &&
+                  `( feels like ${city.weather.current.feels_like.toFixed(
+                    1
+                  )}°C )`}
+              </span>
             </div>
-            <div></div>
-            <div></div>
+          </div>
+          <div className='flex flex-col gap-1 font-sans'>
+            <p>Humidity: {city.weather?.current?.humidity}%</p>
+            <p className=''>
+              {city.weather?.current?.dt &&
+                `Wind / Wind gust: ${city.weather.current.wind_speed} km/h / ${city.weather.current.wind_gust} km/h`}
+            </p>
+            <p>Pressure: {city.weather?.current?.pressure} mb</p>
           </div>
         </div>
       </div>
@@ -88,7 +87,7 @@ function CityPage() {
         <HourlyWeatherForecast weather={city.weather.hourly} />
         <CityDetailsPage city={city} />
       </div>
-      <div className='w-full bg-white p-4 rounded-xl max-md:p-3'>
+      <div className='w-full bg-surface-light-3 dark:bg-gray-700 p-4 rounded-xl max-md:p-3'>
         <DailyWeatherForecast weather={city.weather.daily} />
       </div>
     </div>

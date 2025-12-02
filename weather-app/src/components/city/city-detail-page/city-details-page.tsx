@@ -32,7 +32,7 @@ const CityDetailsPage = ({ city }: { city: CityProps }) => {
     }));
 
   return (
-    <div className='w-full m-1 bg-white hover:shadow-md dark:bg-gray-800 rounded-xl p-2'>
+    <div className='font-sans w-full m-1 bg-surface-light-3 hover:shadow-md dark:bg-gray-700 rounded-xl p-2'>
       <div style={{ width: '100%', height: 300 }}>
         <ResponsiveContainer>
           <LineChart

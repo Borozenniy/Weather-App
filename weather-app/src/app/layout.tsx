@@ -3,7 +3,7 @@ import { Header } from '@/components/header/header';
 import { ThemeProvider } from '@/providers/theme-provider/theme-context';
 import { ReduxProvider } from '@/providers/redux-provider/redux-provider';
 import { ModalProvider } from '@/providers/modal-provider/modal-provider';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Geist, Geist_Mono, Noto_Sans } from 'next/font/google';
 import './globals.css';
 
 const geistSans = Geist({
@@ -14,6 +14,11 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
+});
+
+const notoSans = Noto_Sans({
+  subsets: ['latin', 'cyrillic'],
+  variable: '--font-noto-sans',
 });
 
 export const metadata: Metadata = {
@@ -29,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${notoSans.variable} antialiased`}
       >
         <ThemeProvider>
           <ReduxProvider>

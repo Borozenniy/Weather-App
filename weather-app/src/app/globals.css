@@ -2,17 +2,27 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --primary: #9ef8ee;
-  --secondary: #32a89c;
   margin: 0px;
   padding: 0px;
 }
 
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-noto: var(--font-noto-sans);
+}
+
 @theme {
   --animate-scaling: 0.3s ease-in-out;
+  --color-surface-light: #c1aa8e;
+  --color-surface-light-1: #d9cfc7;
+  --color-surface-light-2: #efe9e3;
+  --color-surface-light-3: #f9f8f6;
 
+  --color-surface-dark: #222831;
+  --color-surface-dark-1: #393e46;
+  --color-surface-dark-2: #44444e;
+  --color-surface-dark-3: #d3dad9;
   @keyframes wiggle {
     100% {
       scale: 1.1;
@@ -28,7 +38,6 @@ button:focus-visible {
 }
 
 body[data-theme='light'] {
-  --background: #f4f;
   --bg-color: #fff;
   --text-color: #000;
 }
@@ -36,13 +45,6 @@ body[data-theme='light'] {
 body[data-theme='dark'] {
   --bg-color: #000;
   --text-color: #fff;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {

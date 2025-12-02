@@ -56,10 +56,10 @@ function CityCard({ city }: { city: CityProps }) {
   };
 
   return (
-    <div className='w-64 h-40 relative flex flex-col justify-between border-1 border-gray-500 rounded-lg p-3 bg-white hover:bg-gray-50 dark:hover:bg-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 cursor-pointer duration-250 ease-in-out hover:scale-101'>
+    <div className='w-64 h-40 relative flex flex-col justify-between border-1 border-gray-500 rounded-lg p-3 bg-surface-light-3 hover:bg-gray-50 dark:hover:bg-surface-dark dark:bg-zinc-900/80 dark:text-zinc-50 cursor-pointer duration-250 ease-in-out hover:scale-101'>
       <div>
-        <h2 className='text-lg font-semibold'>{city.name}</h2>
-        <p>
+        <h2 className='font-mono text-lg font-semibold'>{city.name}</h2>
+        <p className='font-mono'>
           {city.weather?.current?.temp
             ? `${city.weather.current.temp.toFixed(1)}°C`
             : isFetching
@@ -68,7 +68,7 @@ function CityCard({ city }: { city: CityProps }) {
         </p>
       </div>
       <div className='text-gray-500 ml-1 dark:text-gray-300/80'>
-        <p className='text-xs italic'>
+        <p className='text-xs font-sans italic'>
           {city.weather?.current?.dt &&
             `Last update: ${getLastTimeUpdated(city.weather.current.dt)}`}
         </p>
@@ -76,7 +76,7 @@ function CityCard({ city }: { city: CityProps }) {
       <div className='flex justify-between items-center'>
         <Link
           href={`/city/${city.name}`}
-          className='p-1 rounded-md bg-blue-400/80 hover:bg-blue-500/80 dark:bg-blue-600/80 dark:hover:bg-blue-500/80'
+          className='font-noto p-1 rounded-md bg-blue-400/80 hover:bg-blue-500/80 dark:bg-blue-600/80 dark:hover:bg-blue-500/80'
         >
           Show details
         </Link>
