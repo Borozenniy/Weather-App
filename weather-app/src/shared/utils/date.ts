@@ -48,6 +48,12 @@ function getHour(date: number) {
   return hour;
 }
 
+const getMinutes = (date: number) => {
+  const minutes = new Date(date * 1000).getMinutes();
+
+  return minutes;
+};
+
 function isThatDayToday(date: number) {
   const day = new Date(date * 1000).getDate();
   const month = new Date(date * 1000).getMonth();
@@ -64,6 +70,41 @@ const dateOfLastUpdate = (date: number) => {
   return `${day}, ${month} ${dayOfMonth}`;
 };
 
+const differenceInHours = (date1: number, date2: number) => {
+  const diffInSeconds = Math.abs(date1 - date2);
+
+  const hours = Math.floor(diffInSeconds / 3600);
+  const minutes = Math.floor((diffInSeconds % 3600) / 60);
+
+  return hours + 'hrs ' + minutes + ' mins';
+};
+
+const convertHoursInPmAndAm = (date: number) => {
+  const hour = getHour(date);
+
+  if (hour === 0) return '12 AM';
+  if (hour > 12) return hour - 12 + ' PM';
+  if (hour <= 12) return hour + ' AM';
+  if (hour === 12) return hour + ' PM';
+};
+
+const getHoursAndMinutesInPmAndAmIncludeTimezone = (
+  date: number,
+  timezone: number
+) => {
+  const hour = getHour(date);
+  const minutes = getMinutes(date);
+  const timezoneHour = timezone / 3600;
+  const currentTimeZone = new Date(date).getTimezoneOffset() / 60;
+  const hourWithTimezone = hour + timezoneHour + currentTimeZone;
+
+  if (hourWithTimezone === 0) return `12:${minutes} AM`;
+  if (hourWithTimezone > 12)
+    return hourWithTimezone - 12 + ':' + minutes + ' PM';
+  if (hourWithTimezone <= 12) return hourWithTimezone + ':' + minutes + ' AM';
+  if (hourWithTimezone === 12) return hourWithTimezone + ':' + minutes + ' PM';
+};
+
 export {
   getLastTimeUpdated,
   getDayOfWeek,
@@ -73,5 +114,9 @@ export {
   getUpdateTime,
   isThatDayToday,
   getHour,
+  getMinutes,
   dateOfLastUpdate,
+  convertHoursInPmAndAm,
+  getHoursAndMinutesInPmAndAmIncludeTimezone,
+  differenceInHours,
 };

@@ -1,16 +1,31 @@
-import { getHour } from '@/shared/utils/date';
+'use client';
+import Image from 'next/image';
+import { convertHoursInPmAndAm } from '@/shared/utils/date';
+import { useTheme } from '@/hooks/use-theme';
+import { weatherIcons } from '@/constants/weather-icons';
 
 function HourlyWeatherForecast({ weather }) {
+  const { theme } = useTheme();
   const tenHoursWeatherForecast = weather.length > 0 && weather.slice(0, 10);
 
-  const convertHoursInPmAndAm = (date: number) => {
-    const hour = getHour(date);
-
-    if (hour === 0) return '12 AM';
-    if (hour > 12) return hour - 12 + ' PM';
-    if (hour <= 12) return hour + ' AM';
-    if (hour === 12) return hour + ' PM';
+  const findWeatherIcon = (weatherName: string) => {
+    const currentWeatherIcon = weatherIcons[theme].find(
+      (weather) => weather.name === weatherName
+    );
+    if (currentWeatherIcon)
+      return (
+        <>
+          <Image
+            src={currentWeatherIcon.src}
+            alt={currentWeatherIcon.alt}
+            width={30}
+            height={30}
+          />
+        </>
+      );
+    return <p className='font-sans text-xs'>{weatherName}</p>;
   };
+
   return (
     <div className='flex flex-col justify-start items-start text-black dark:text-zinc-50 bg-surface-light-3 dark:bg-gray-700 rounded-xl pr-4 pl-4 pt-1.5'>
       <h2 className='font-sans text-xs text-gray-500 dark:text-gray-400 font-bold min-w-40 border-b-1 border-gray-400'>
@@ -26,7 +41,7 @@ function HourlyWeatherForecast({ weather }) {
               <p className='font-sans text-xs'>
                 {convertHoursInPmAndAm(hour.dt)}
               </p>
-              <p className='font-sans text-xs'>{hour.weather[0].main}</p>
+              {findWeatherIcon(hour.weather[0].main)}
               <p className='font-mono text-xs font-bold'>
                 {hour.temp.toFixed(1) + '°'}
               </p>

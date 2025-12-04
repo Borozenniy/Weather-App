@@ -86,7 +86,7 @@ function SearchBar() {
       />
       <input
         id='search-bar'
-        className='font-sans flex-1 px-2 py-1 outline-none border-none bg-surface-light-3 dark:bg-surface-dark-2 focus:ring-0 '
+        className='font-sans flex-1 px-2 py-1 outline-none border-none bg-surface-light-2 dark:bg-gray-800 focus:ring-0 '
         type='text'
         size={2}
         placeholder='Type city name'

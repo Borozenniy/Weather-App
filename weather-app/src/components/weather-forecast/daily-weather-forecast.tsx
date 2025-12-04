@@ -1,3 +1,6 @@
+'use client';
+import Image from 'next/image';
+import { useTheme } from '@/hooks/use-theme';
 import {
   isThatDayToday,
   dateOfLastUpdate,
@@ -5,13 +8,33 @@ import {
   getDayOfMonth,
   getMonthInNumbers,
 } from '@/shared/utils/date';
+import { weatherIcons } from '@/constants/weather-icons';
 
 type WeatherForecastProps = {
   weather: [];
 };
 
 function DailyWeatherForecast({ weather }: WeatherForecastProps) {
+  const { theme } = useTheme();
   const sevenDaysWeatherForecast = weather.length > 0 && weather.slice(0, 7);
+  const findWeatherIcon = (weatherName: string) => {
+    const currentWeatherIcon = weatherIcons[theme].find(
+      (weather) => weather.name === weatherName
+    );
+    if (currentWeatherIcon)
+      return (
+        <>
+          <Image
+            src={currentWeatherIcon.src}
+            alt={currentWeatherIcon.alt}
+            width={30}
+            height={30}
+          />
+        </>
+      );
+    return <p className='font-sans text-xs'>{weatherName}</p>;
+  };
+
   return (
     <div className=''>
       <h2 className='font-sans text-xs text-gray-500 dark:text-gray-400 font-bold border-b-1 border-gray-400'>
@@ -43,7 +66,7 @@ function DailyWeatherForecast({ weather }: WeatherForecastProps) {
               )}
             </div>
             <div className='w-20 font-sans'>
-              <p>{day.weather[0].main}</p>
+              {findWeatherIcon(day.weather[0].main)}
             </div>
             <div className='flex flex-row w-40 items-end justify-center'>
               <p className='font-mono text-2xl font-bold'>
