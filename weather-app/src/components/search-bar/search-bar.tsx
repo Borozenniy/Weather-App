@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import {
   useLazyGetCityInfoByCityNameQuery,
   useLazyGetCityInfoByCoordsQuery,
-  useLazyGetWeatherByCoordsQuery,
 } from '@/services/weather/api';
 import { useModal } from '@/hooks/use-modal';
 import { useTheme } from '@/hooks/use-theme';
@@ -78,7 +77,7 @@ function SearchBar() {
   };
 
   return (
-    <div className='w-56 md:w-72 rounded-xl flex overflow-hidden mb-8 border-2 border-gray-500 dark:border-gray-300 focus-within:border-blue-700 dark:focus-within:border-blue-500'>
+    <div className='w-64 md:w-72 rounded-xl flex overflow-hidden mb-5 border-2 border-gray-500 dark:border-gray-300 focus-within:border-blue-700 dark:focus-within:border-blue-500'>
       <Button
         icon={geoIcon[theme]}
         isTransparent

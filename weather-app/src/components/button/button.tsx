@@ -21,6 +21,11 @@ function Button({
         `${isTransparent ? '' : 'bg-green-600/60 hover:bg-green-600/80'}`,
         `${mode === 'danger' ? 'hover:bg-red-400' : ''}`,
         `${
+          disabled
+            ? 'bg-surface-light-3  dark:bg-gray-700 hover:bg-surface-light-3 dark:hover:bg-gray-700'
+            : ''
+        }`,
+        `${
           mode === 'danger' && isActive
             ? 'bg-red-400 hover:bg-red-500/90 dark:bg-red-500/90 dark:hover:bg-red-400'
             : ''

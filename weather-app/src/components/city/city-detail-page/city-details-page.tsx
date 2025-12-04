@@ -11,7 +11,6 @@ import {
 import type { CityProps } from '@/shared/types/city';
 
 const CityDetailsPage = ({ city }: { city: CityProps }) => {
-  console.log(city);
   const now = new Date();
   const today = now.getDate();
   const month = now.getMonth();

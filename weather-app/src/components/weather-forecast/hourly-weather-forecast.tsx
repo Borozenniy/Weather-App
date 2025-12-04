@@ -36,7 +36,7 @@ function HourlyWeatherForecast({ weather }) {
           tenHoursWeatherForecast.map((hour) => (
             <div
               key={hour.dt}
-              className='flex flex-wrap h-6 justify-between items-center max-md:flex-col max-md:h-20 hover:bg-gray-100 max-sm:flex-1/6 max-sm:mb-3'
+              className='flex flex-wrap h-6 justify-between items-center max-md:flex-col max-md:h-20 max-sm:flex-1/6 max-sm:mb-3'
             >
               <p className='font-sans text-xs w-9'>
                 {convertHoursInPmAndAm(hour.dt)}

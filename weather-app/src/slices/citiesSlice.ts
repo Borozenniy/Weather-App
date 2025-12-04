@@ -33,6 +33,18 @@ const citiesSlice = createSlice({
       );
       localStorage.setItem('cities', JSON.stringify(state.cities));
     },
+    loadCitiesFromLocalStorage: (state) => {
+      if (typeof window !== 'undefined') {
+        const stored = localStorage.getItem('cities');
+        if (stored) {
+          try {
+            state.cities = JSON.parse(stored);
+          } catch {
+            state.cities = [];
+          }
+        }
+      }
+    },
     updateCityWeather: (state, action: PayloadAction<CityProps>) => {
       const cityIndex = state.cities.findIndex(
         (city) => city.name === action.payload.name
@@ -55,8 +67,13 @@ export const selectCityByName = (
   return state.cities.cities.find((city) => city.name === cityName);
 };
 
-export const { setCities, addCity, removeCity, updateCityWeather } =
-  citiesSlice.actions;
+export const {
+  setCities,
+  addCity,
+  removeCity,
+  updateCityWeather,
+  loadCitiesFromLocalStorage,
+} = citiesSlice.actions;
 export default citiesSlice.reducer;
 
 //import { createSlice, type PayloadAction } from '@reduxjs/toolkit';

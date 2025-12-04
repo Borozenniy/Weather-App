@@ -17,6 +17,15 @@ function getLastTimeUpdated(date: number) {
   if (differenceInMinutes <= 1) return 'A minute ago';
 }
 
+function getDiffInHours(date: number) {
+  const oldDate = new Date(date).getTime();
+  const currentDate = Date.now();
+  const difference = currentDate - oldDate * 1000;
+
+  const differenceInHours = Math.floor(difference / (1000 * 60 * 60));
+  return differenceInHours;
+}
+
 function getUpdateTime(date: number) {
   const hours = new Date(date * 1000).getHours();
   const minutes = new Date(date * 1000).getMinutes();
@@ -119,4 +128,5 @@ export {
   convertHoursInPmAndAm,
   getHoursAndMinutesInPmAndAmIncludeTimezone,
   differenceInHours,
+  getDiffInHours,
 };

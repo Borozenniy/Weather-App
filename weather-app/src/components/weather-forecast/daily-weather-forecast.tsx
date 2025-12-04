@@ -73,7 +73,7 @@ function DailyWeatherForecast({ weather }: WeatherForecastProps) {
               </p>
               <p className='text-gray-500'>{day.temp.min.toFixed(0) + '°'}</p>
             </div>
-            <p className='font-sans max-md:hidden w-80 text-pretty'>
+            <p className='font-sans max-md:hidden w-100 text-pretty'>
               {day.summary}
             </p>
           </div>

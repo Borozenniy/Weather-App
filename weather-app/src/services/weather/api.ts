@@ -2,9 +2,6 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { WEATHER_API_KEY } from '@/constants/weather-api';
 import type { CityProps } from '@/shared/types/city';
 
-const fakelat = 52.4550144;
-const fakelon = 13.3005312;
-
 export const weatherApi = createApi({
   reducerPath: 'weatherApi',
   baseQuery: fetchBaseQuery({

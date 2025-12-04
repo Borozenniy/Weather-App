@@ -12,6 +12,7 @@ import { DeleteCityModal } from '@/components/modal/delete-city-modal';
 import { getLastTimeUpdated } from '@/shared/utils/date';
 import type { CityProps, CityWeatherProps } from '@/shared/types/city';
 import type { AppDispatch } from '@/store/store';
+import { getDiffInHours } from '@/shared/utils/date';
 import DeleteIcon from '../../../../public/icons/trash-bin.svg';
 import DeleteIconWhite from '../../../../public/icons/trash-bin-white.svg';
 
@@ -25,6 +26,7 @@ function CityCard({ city }: { city: CityProps }) {
   const { theme } = useTheme();
   const dispatch = useDispatch<AppDispatch>();
   const [fetchWeather, { data, isFetching }] = useLazyGetWeatherByCoordsQuery();
+  const diffInHours = getDiffInHours(city.weather?.current?.dt ?? 0);
 
   useEffect(() => {
     if (!city.weather && city.lat && city.lon) {
@@ -45,6 +47,10 @@ function CityCard({ city }: { city: CityProps }) {
     closeModal();
   };
 
+  const handleRefreshWeather = () => {
+    if (city.lat && city.lon) fetchWeather({ lat: city.lat, lon: city.lon });
+  };
+
   const handleDeleteCity = () => {
     openModal(
       <DeleteCityModal
@@ -56,7 +62,7 @@ function CityCard({ city }: { city: CityProps }) {
   };
 
   return (
-    <div className='w-64 h-40 relative flex flex-col justify-between border-1 border-gray-500 rounded-lg p-3 bg-surface-light-3 hover:bg-gray-50 dark:hover:bg-surface-dark dark:bg-zinc-900/80 dark:text-zinc-50 cursor-pointer duration-250 ease-in-out hover:scale-101'>
+    <div className='w-64 h-40 relative flex flex-col justify-between border-1 border-gray-500 rounded-lg p-3 bg-surface-light-3 hover:bg-gray-50 dark:hover:bg-surface-dark dark:bg-zinc-900/80 dark:text-zinc-50 duration-250 ease-in-out hover:scale-101'>
       <div>
         <h2 className='font-mono text-lg font-semibold'>{city.name}</h2>
         <p className='font-mono'>
@@ -83,11 +89,8 @@ function CityCard({ city }: { city: CityProps }) {
         <Button
           label='Refresh'
           isRounded
-          onClick={() => {
-            if (city.lat && city.lon)
-              fetchWeather({ lat: city.lat, lon: city.lon });
-          }}
-          disabled={isFetching || !city.lat || !city.lon}
+          onClick={() => handleRefreshWeather()}
+          disabled={isFetching || !city.lat || !city.lon || diffInHours < 1}
         />
       </div>
       <div className='absolute top-3 right-2'>
