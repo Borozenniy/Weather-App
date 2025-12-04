@@ -45,7 +45,7 @@ function CityPage() {
   }
 
   return (
-    <div className='w-6xl flex flex-col items-center justify-start min-h-screen pr-8 pl-8 sm:pr-5 sm:pl-5 gap-4 '>
+    <div className='w-6xl flex flex-col items-center justify-start min-h-screen pr-8 pl-8 pb-8 sm:pb-5 sm:pr-5 sm:pl-5 gap-4 '>
       <div className='w-full pb-4 text-black dark:text-zinc-50 bg-surface-light-3 dark:bg-gray-700 p-5 rounded-xl hover:shadow-md  '>
         <div className='flex items-center gap-5 mb-3 max-md:justify-between'>
           <p className='text-xs font-noto font-bold'>
@@ -106,31 +106,37 @@ function CityPage() {
             </p>
           </div>
           <div className='flex flex-col gap-2 font-sans w-50 '>
-            <div className='flex justify-between'>
-              <span>Day length</span>
+            <div className='flex gap-3'>
+              <span>Day length:</span>
               <span>
-                {differenceInHours(
-                  city.weather?.current?.sunset,
-                  city.weather?.current?.sunrise
-                )}{' '}
+                {city?.weather?.current?.sunset &&
+                  city.weather?.current?.sunrise &&
+                  differenceInHours(
+                    city.weather?.current?.sunset,
+                    city.weather?.current?.sunrise
+                  )}{' '}
               </span>
             </div>
-            <div className='flex justify-between'>
-              <span>Sunrise</span>
+            <div className='flex gap-3'>
+              <span>Sunrise:</span>
               <span>
-                {getHoursAndMinutesInPmAndAmIncludeTimezone(
-                  city.weather?.current.sunrise,
-                  city.weather.timezone_offset
-                )}
+                {city?.weather?.current?.sunrise &&
+                  city.weather?.timezone_offset &&
+                  getHoursAndMinutesInPmAndAmIncludeTimezone(
+                    city.weather?.current.sunrise,
+                    city.weather.timezone_offset
+                  )}
               </span>
             </div>
-            <div className='flex justify-between'>
-              <span>Sunrset</span>
+            <div className='flex gap-3'>
+              <span>Sunrset:</span>
               <span>
-                {getHoursAndMinutesInPmAndAmIncludeTimezone(
-                  city.weather?.current.sunset,
-                  city.weather.timezone_offset
-                )}
+                {city?.weather?.current?.sunset &&
+                  city.weather?.timezone_offset &&
+                  getHoursAndMinutesInPmAndAmIncludeTimezone(
+                    city.weather?.current.sunset,
+                    city.weather.timezone_offset
+                  )}
               </span>
             </div>
           </div>

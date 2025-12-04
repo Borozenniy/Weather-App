@@ -86,7 +86,6 @@ function CityCard({ city }: { city: CityProps }) {
           onClick={() => {
             if (city.lat && city.lon)
               fetchWeather({ lat: city.lat, lon: city.lon });
-            console.log('refetch');
           }}
           disabled={isFetching || !city.lat || !city.lon}
         />

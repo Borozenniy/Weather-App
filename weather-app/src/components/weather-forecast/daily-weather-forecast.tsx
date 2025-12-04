@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { useTheme } from '@/hooks/use-theme';
 import {
   isThatDayToday,
-  dateOfLastUpdate,
   getDayOfWeek,
   getDayOfMonth,
   getMonthInNumbers,
@@ -27,8 +26,8 @@ function DailyWeatherForecast({ weather }: WeatherForecastProps) {
           <Image
             src={currentWeatherIcon.src}
             alt={currentWeatherIcon.alt}
-            width={30}
-            height={30}
+            width={40}
+            height={40}
           />
         </>
       );
@@ -44,7 +43,7 @@ function DailyWeatherForecast({ weather }: WeatherForecastProps) {
         sevenDaysWeatherForecast.map((day, index) => (
           <div
             key={index}
-            className='flex flex-row w-full items-center m-1 h-12 gap-1'
+            className='flex flex-row w-full items-center justify-between m-1 h-12 gap-1'
           >
             <div className='w-20 font-sans'>
               {isThatDayToday(day.dt) ? (
@@ -74,12 +73,9 @@ function DailyWeatherForecast({ weather }: WeatherForecastProps) {
               </p>
               <p className='text-gray-500'>{day.temp.min.toFixed(0) + '°'}</p>
             </div>
-            <p className='font-sans text-xs max-md:hidden w-80 text-pretty'>
+            <p className='font-sans max-md:hidden w-80 text-pretty'>
               {day.summary}
             </p>
-            <div>
-              <p>{day.humidity}</p>
-            </div>
           </div>
         ))}
     </div>
